@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfw5qw2mmc5wi"]
+
+[ext_resource type="PackedScene" uid="uid://cn0o3x61shrj2" path="res://Entities/Player/Player.tscn" id="1_n7m7m"]
+[ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="2_m106f"]
+[ext_resource type="PackedScene" uid="uid://chrcv88bv8b05" path="res://Maps/Props/floor.tscn" id="3_gr1m1"]
+
+[node name="Map" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_n7m7m")]
+position = Vector2(387, 285)
+script = ExtResource("2_m106f")
+
+[node name="floor1" parent="." instance=ExtResource("3_gr1m1")]
+position = Vector2(552, 483)
+scale = Vector2(20, 1)
+
+[node name="floor2" parent="." instance=ExtResource("3_gr1m1")]
+position = Vector2(715, 453)
+rotation = -0.349066
+scale = Vector2(10, 1)

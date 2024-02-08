@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn0o3x61shrj2"]
+
+[ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="1_kekt4"]
+[ext_resource type="PackedScene" uid="uid://bmuf8b48gdj3i" path="res://Scripts/StateMachine/StateMachine.tscn" id="2_qonjb"]
+[ext_resource type="Script" path="res://Entities/Player/Idle.gd" id="3_eo8xn"]
+[ext_resource type="Script" path="res://Entities/Player/Jump.gd" id="4_oyt8e"]
+[ext_resource type="Script" path="res://Entities/Player/Move.gd" id="5_0evjr"]
+[ext_resource type="Script" path="res://Entities/Player/Fall.gd" id="5_x1ls0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qia3r"]
+size = Vector2(128, 128)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kekt4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qia3r")
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+scale = Vector2(30, 10)
+target_position = Vector2(0, 15)
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_qonjb")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "move_state")]
+script = ExtResource("3_eo8xn")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+move_state = NodePath("../Move")
+move_speed = 2
+
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "move_state", "idle_state")]
+script = ExtResource("4_oyt8e")
+fall_state = NodePath("../Fall")
+move_state = NodePath("../Move")
+idle_state = NodePath("../Idle")
+
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
+script = ExtResource("5_x1ls0")
+idle_state = NodePath("../Idle")
+move_state = NodePath("../Move")
+
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state")]
+script = ExtResource("5_0evjr")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
