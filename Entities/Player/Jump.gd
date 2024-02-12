@@ -7,7 +7,7 @@ var move_state: State
 @export
 var idle_state: State
 @export
-var jump_force: float = 800.0
+var jump_force: float = 600.0
 
 func enter() -> void:
 	super()

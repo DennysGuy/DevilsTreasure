@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://nj4eqlh3rb6e"]
+
+[ext_resource type="Script" path="res://gunarm.gd" id="1_8tqaa"]
+[ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="1_a6pdb"]
+
+[node name="GunArm" type="CharacterBody2D"]
+script = ExtResource("1_8tqaa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(30.5, 1)
+scale = Vector2(1.22656, 0.203125)
+texture = ExtResource("1_a6pdb")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(109, 0)

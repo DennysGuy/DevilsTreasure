@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmgrg3u8vo6n1"]
+
+[ext_resource type="Script" path="res://Scripts/Props/bullet.gd" id="1_4dwyw"]
+[ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="1_hd1mc"]
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_4dwyw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.132813, 0.132813)
+texture = ExtResource("1_hd1mc")

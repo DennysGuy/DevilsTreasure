@@ -54,16 +54,5 @@ fall_state = NodePath("../Fall")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-position = Vector2(-20, 0)
-
-[node name="GunArm" parent="PinJoint2D" instance=ExtResource("7_qtr10")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.1
-drag_top_margin = 0.1
-drag_right_margin = 0.1
-drag_bottom_margin = 0.1
+[node name="GunArm" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_qtr10")]
+player = NodePath("..")
