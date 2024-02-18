@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn0o3x61shrj2"]
+[gd_scene load_steps=12 format=3 uid="uid://cn0o3x61shrj2"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_4ell5"]
 [ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="1_kekt4"]
@@ -8,11 +8,16 @@
 [ext_resource type="Script" path="res://Entities/Player/Move.gd" id="5_0evjr"]
 [ext_resource type="Script" path="res://Entities/Player/Fall.gd" id="5_x1ls0"]
 [ext_resource type="PackedScene" uid="uid://nj4eqlh3rb6e" path="res://gunarm.tscn" id="7_qtr10"]
+[ext_resource type="Script" path="res://Entities/Player/Climb.gd" id="8_5rcn5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qia3r"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apfk7"]
+size = Vector2(39, 127)
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 3
 script = ExtResource("1_4ell5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,26 +33,36 @@ target_position = Vector2(0, 15)
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_qonjb")]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "move_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "move_state", "climb_state")]
 script = ExtResource("3_eo8xn")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 move_state = NodePath("../Move")
+climb_state = NodePath("../Climb")
 move_speed = 2
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "move_state", "idle_state")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "move_state", "idle_state", "climb_state")]
 script = ExtResource("4_oyt8e")
 fall_state = NodePath("../Fall")
 move_state = NodePath("../Move")
 idle_state = NodePath("../Idle")
+climb_state = NodePath("../Climb")
 
-[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "climb_state")]
 script = ExtResource("5_x1ls0")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
+climb_state = NodePath("../Climb")
 
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state")]
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "climb_state")]
 script = ExtResource("5_0evjr")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+climb_state = NodePath("../Climb")
+
+[node name="Climb" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state")]
+script = ExtResource("8_5rcn5")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
@@ -67,3 +82,14 @@ drag_left_margin = 0.1
 drag_top_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_apfk7")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

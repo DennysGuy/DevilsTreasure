@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk1fu7seat78x"]
+
+[ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="1_axtkv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3a5d"]
+size = Vector2(128, 128)
+
+[node name="Ladder" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_axtkv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t3a5d")

@@ -6,7 +6,16 @@ var jump_state: State
 var fall_state: State
 @export
 var move_state: State
+@export
+var climb_state: State
 
+@onready
+var ladder = get_tree().current_scene.find_child("Ladder")
+
+func enter() -> void:
+	super()
+	move_speed = 600
+	
 func process_input(_event: InputEvent) -> State:
 	
 	var key_pressed: bool = _event.is_action_pressed("move_left") or _event.is_action_pressed("move_right")
@@ -16,6 +25,10 @@ func process_input(_event: InputEvent) -> State:
 	
 	if Input.is_action_just_pressed("jump"):
 		return jump_state
+	
+	if Input.is_action_just_pressed("move_up") and parent.in_ladder_area:
+		print("in climb state")
+		return climb_state
 	
 	return null
 

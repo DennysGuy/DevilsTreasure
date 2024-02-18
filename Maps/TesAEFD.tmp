@@ -6,34 +6,22 @@
 
 [node name="Map" type="Node2D"]
 
-[node name="floor5" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(1971, 217)
-scale = Vector2(20, 1)
-
 [node name="Ladder" parent="." instance=ExtResource("3_esxkk")]
-position = Vector2(1404, 510)
-scale = Vector2(1, 5)
-
-[node name="Ladder2" parent="." instance=ExtResource("3_esxkk")]
-position = Vector2(2338, 575)
-scale = Vector2(1, 6)
+position = Vector2(2726, 10141)
+scale = Vector2(1, 3)
 
 [node name="Player" parent="." instance=ExtResource("1_n7m7m")]
-position = Vector2(490, 468)
+position = Vector2(2454, 10208)
 
 [node name="floor1" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(3669, 674)
+position = Vector2(3876, 10187)
 scale = Vector2(20, 1)
 
-[node name="floor4" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(81396, 20374)
-scale = Vector2(400, 1)
-
 [node name="floor2" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(2835, 760)
+position = Vector2(3112, 10278)
 rotation = -0.349066
 scale = Vector2(10, 1)
 
 [node name="floor3" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(7751, 2167)
+position = Vector2(10419, 11684)
 scale = Vector2(400, 50)
