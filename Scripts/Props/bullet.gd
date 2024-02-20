@@ -17,6 +17,9 @@ func _process(delta):
 		if collision.get_collider().has_method("hit"):
 			collision.get_collider().hit()
 
-func _on_VisibilityNotifier2D_screen_exited():
+
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
 	self.queue_free()
-	print("bullet destroyed")
+	print("bullet deleted")

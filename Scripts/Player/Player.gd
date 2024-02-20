@@ -24,8 +24,8 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body):
 	self.in_ladder_area = true
-	print(str(self.in_ladder_area))
+	
 
 func _on_area_2d_body_exited(body):
 	self.in_ladder_area = false
-	print(str(self.in_ladder_area))
+	

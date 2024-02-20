@@ -10,6 +10,12 @@ var idle_state: State
 @export
 var climb_state: State
 
+@onready
+var bullet = preload("res://props/Projectiles/player_bullet.tscn")
+
+@export
+var barrel : Marker2D
+
 @export
 var jump_force: float = 600.0
 
@@ -37,7 +43,26 @@ func process_physics(_delta: float) -> State:
 	parent.velocity.x = movement
 	parent.move_and_slide()
 	
+	#shoot in air
+	if Input.is_action_just_pressed("shoot"):
+		self.shoot()
+
+	
 	if parent.is_on_floor():
 		return idle_state
 	
 	return null
+
+func shoot():
+	var direction 
+	if parent.animation_player.flip_h:
+		direction = -1
+		barrel.position.x = -8
+	else:
+		direction = 1
+		barrel.position.x = 8
+			
+		
+	var new_bullet = bullet.instantiate()
+	new_bullet.start(barrel.global_position, direction)
+	get_tree().root.add_child(new_bullet) 

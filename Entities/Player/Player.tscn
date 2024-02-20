@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cn0o3x61shrj2"]
+[gd_scene load_steps=28 format=3 uid="uid://cn0o3x61shrj2"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_4ell5"]
 [ext_resource type="Texture2D" uid="uid://5s7tlcayl5s8" path="res://Assets/thief_4bit.png" id="2_5ucj0"]
@@ -154,6 +154,9 @@ _data = {
 "Shoot": SubResource("Animation_36s5n")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lys76"]
+radius = 57.0088
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_4ell5")
@@ -183,30 +186,33 @@ shoot_state = NodePath("../Shoot")
 animation_name = "Idle"
 move_speed = 0
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "move_state", "idle_state", "climb_state")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "move_state", "idle_state", "climb_state", "barrel")]
 script = ExtResource("4_oyt8e")
 fall_state = NodePath("../Fall")
 move_state = NodePath("../Move")
 idle_state = NodePath("../Idle")
 climb_state = NodePath("../Climb")
+barrel = NodePath("../../Barrel")
 jump_force = 250.0
 animation_name = "Jump"
 move_speed = 180
 
-[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "climb_state")]
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "climb_state", "barrel")]
 script = ExtResource("5_x1ls0")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
 climb_state = NodePath("../Climb")
+barrel = NodePath("../../Barrel")
 animation_name = "Fall"
 move_speed = 100
 
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "climb_state")]
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "climb_state", "shoot_state")]
 script = ExtResource("5_0evjr")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 climb_state = NodePath("../Climb")
+shoot_state = NodePath("../Shoot")
 animation_name = "Run"
 move_speed = 100
 
@@ -241,6 +247,13 @@ libraries = {
 process_callback = 0
 wait_time = 0.1
 one_shot = true
+
+[node name="BulletOutofRangeDetector" type="Area2D" parent="."]
+position = Vector2(8, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletOutofRangeDetector"]
+position = Vector2(-9, -3)
+shape = SubResource("CircleShape2D_lys76")
 
 [connection signal="animation_finished" from="animations" to="StateMachine/Shoot" method="_on_animations_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

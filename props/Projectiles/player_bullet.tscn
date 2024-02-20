@@ -1,12 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmgrg3u8vo6n1"]
 
 [ext_resource type="Script" path="res://Scripts/Props/bullet.gd" id="1_4dwyw"]
-[ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="1_hd1mc"]
+[ext_resource type="Texture2D" uid="uid://b060nsllslebo" path="res://Assets/bullet.png" id="2_11g2n"]
 
 [node name="Bullet" type="CharacterBody2D"]
 script = ExtResource("1_4dwyw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4.76837e-07, -4.76837e-07)
-scale = Vector2(0.0351565, 0.0351565)
-texture = ExtResource("1_hd1mc")
+texture = ExtResource("2_11g2n")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

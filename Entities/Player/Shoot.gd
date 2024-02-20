@@ -23,8 +23,10 @@ func process_physics(_delta: float) -> State:
 	var direction 
 	if parent.animation_player.flip_h:
 		direction = -1
+		barrel.position.x = -8
 	else:
 		direction = 1
+		barrel.position.x = 8
 		
 	
 	if bullet_count > 0:
