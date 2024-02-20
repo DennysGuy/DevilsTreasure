@@ -1,10 +1,11 @@
 class_name Entity
 extends CharacterBody2D
 
-#@onready
-#var animation_player
+@onready
+var animation_player = $animations
 @onready
 var state_machine = $StateMachine
+
 
 var in_ladder_area := false
 

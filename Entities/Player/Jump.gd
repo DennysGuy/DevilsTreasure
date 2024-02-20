@@ -15,7 +15,6 @@ var jump_force: float = 600.0
 
 func enter() -> void:
 	super()
-	move_speed = 600
 	parent.velocity.y -= jump_force
 
 func process_input(_event: InputEvent) -> State:
@@ -33,7 +32,8 @@ func process_physics(_delta: float) -> State:
 		return fall_state
 	
 	var movement = Input.get_axis("move_left","move_right") * move_speed
-	
+	if movement != 0:
+		parent.animation_player.flip_h = movement < 0
 	parent.velocity.x = movement
 	parent.move_and_slide()
 	

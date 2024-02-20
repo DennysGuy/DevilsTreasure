@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cn0o3x61shrj2"]
+[gd_scene load_steps=25 format=3 uid="uid://cn0o3x61shrj2"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_4ell5"]
 [ext_resource type="Texture2D" uid="uid://5s7tlcayl5s8" path="res://Assets/thief_4bit.png" id="2_5ucj0"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Entities/Player/Move.gd" id="5_0evjr"]
 [ext_resource type="Script" path="res://Entities/Player/Fall.gd" id="5_x1ls0"]
 [ext_resource type="Script" path="res://Entities/Player/Climb.gd" id="8_5rcn5"]
-[ext_resource type="Script" path="res://Entities/Player/Shoot.gd" id="9_d4hiq"]
+[ext_resource type="PackedScene" uid="uid://e0el10oy4sy" path="res://Scripts/StateMachine/State.tscn" id="9_ab83b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ksvir"]
 atlas = ExtResource("2_5ucj0")
@@ -102,7 +102,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Run",
-"speed": 9.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -111,7 +111,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gis35")
 }],
-"loop": false,
+"loop": true,
 "name": &"Shoot",
 "speed": 12.0
 }, {
@@ -134,52 +134,27 @@ height = 16.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apfk7"]
 size = Vector2(4.4375, 16)
 
-[sub_resource type="Animation" id="Animation_36s5n"]
-resource_name = "Shoot"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("animations:sprite_frames")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fg6du"]
-_data = {
-"Shoot": SubResource("Animation_36s5n")
-}
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_4ell5")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fjcde")
-animation = &"Run"
-frame_progress = 0.45168
+animation = &"Shoot"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_igor2")
 
-[node name="Barrel" type="Marker2D" parent="."]
-position = Vector2(8, 3)
-
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_qonjb")]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "move_state", "climb_state", "shoot_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "move_state", "climb_state")]
 script = ExtResource("3_eo8xn")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 move_state = NodePath("../Move")
 climb_state = NodePath("../Climb")
-shoot_state = NodePath("../Shoot")
 animation_name = "Idle"
 move_speed = 0
 
@@ -217,12 +192,7 @@ jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 move_speed = 100
 
-[node name="Shoot" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "timer", "barrel")]
-script = ExtResource("9_d4hiq")
-idle_state = NodePath("../Idle")
-timer = NodePath("../../Timer")
-barrel = NodePath("../../Barrel")
-animation_name = "Shoot"
+[node name="Shoot" parent="StateMachine" instance=ExtResource("9_ab83b")]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -231,16 +201,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_apfk7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_fg6du")
-}
-
-[node name="Timer" type="Timer" parent="."]
-process_callback = 0
-wait_time = 0.1
-one_shot = true
 
 [connection signal="animation_finished" from="animations" to="StateMachine/Shoot" method="_on_animations_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

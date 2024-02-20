@@ -1,39 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfw5qw2mmc5wi"]
+[gd_scene load_steps=3 format=3 uid="uid://dfw5qw2mmc5wi"]
 
 [ext_resource type="PackedScene" uid="uid://cn0o3x61shrj2" path="res://Entities/Player/Player.tscn" id="1_n7m7m"]
-[ext_resource type="PackedScene" uid="uid://bk1fu7seat78x" path="res://props/ladder.tscn" id="3_esxkk"]
 [ext_resource type="PackedScene" uid="uid://chrcv88bv8b05" path="res://Maps/Props/floor.tscn" id="3_gr1m1"]
 
 [node name="Map" type="Node2D"]
 
-[node name="floor5" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(1971, 217)
-scale = Vector2(20, 1)
-
-[node name="Ladder" parent="." instance=ExtResource("3_esxkk")]
-position = Vector2(1404, 510)
-scale = Vector2(1, 5)
-
-[node name="Ladder2" parent="." instance=ExtResource("3_esxkk")]
-position = Vector2(2338, 575)
-scale = Vector2(1, 6)
-
 [node name="Player" parent="." instance=ExtResource("1_n7m7m")]
-position = Vector2(490, 468)
+position = Vector2(52, 97)
 
-[node name="floor1" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(3669, 674)
-scale = Vector2(20, 1)
+[node name="Floor" parent="." instance=ExtResource("3_gr1m1")]
+position = Vector2(82, 144)
+scale = Vector2(4, 1)
 
-[node name="floor4" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(81396, 20374)
-scale = Vector2(400, 1)
+[node name="Floor2" parent="." instance=ExtResource("3_gr1m1")]
+position = Vector2(134, 97)
+scale = Vector2(1, 0.3)
 
-[node name="floor2" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(2835, 760)
-rotation = -0.349066
-scale = Vector2(10, 1)
-
-[node name="floor3" parent="." instance=ExtResource("3_gr1m1")]
-position = Vector2(7751, 2167)
-scale = Vector2(400, 50)
+[node name="Floor3" parent="." instance=ExtResource("3_gr1m1")]
+position = Vector2(38, 79)
+scale = Vector2(1.5, 0.3)

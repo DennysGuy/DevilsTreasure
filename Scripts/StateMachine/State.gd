@@ -3,14 +3,16 @@ extends Node
 
 @export
 var animation_name: String
-@export 
+@export
 var move_speed : int = 600
+
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var parent: Entity
 
 func enter() -> void:
-	#parent.animation.play()
+	parent.animation_player.play(animation_name)
 	pass
 
 func exit() -> void:

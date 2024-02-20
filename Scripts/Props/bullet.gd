@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-var speed := 2000
+var speed := 300
+var direction := 0
 # Called when the node enters the scene tree for the first time.
 func start(_position, _direction):
-	rotation = _direction
+	direction = _direction
 	position = _position
-	velocity = Vector2(speed, 0).rotated(rotation)
+	velocity = Vector2(direction * speed, 0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
