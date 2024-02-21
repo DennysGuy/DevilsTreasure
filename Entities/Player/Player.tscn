@@ -146,7 +146,7 @@ radius = 6.0
 height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apfk7"]
-size = Vector2(4.4375, 16)
+size = Vector2(2, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lys76"]
 radius = 57.0088
