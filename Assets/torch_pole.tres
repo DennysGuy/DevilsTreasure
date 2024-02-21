@@ -1,0 +1,12 @@
+[gd_resource type="AnimatedTexture" load_steps=3 format=3 uid="uid://cdydm66xk6ix5"]
+
+[ext_resource type="Texture2D" uid="uid://b3qb02lvyf2b5" path="res://Assets/torch_pole_f1.png" id="1_qfn4k"]
+[ext_resource type="Texture2D" uid="uid://1qhca3trqnyf" path="res://Assets/torch_pole_f2.png" id="2_ggooo"]
+
+[resource]
+frames = 2
+speed_scale = 3.0
+frame_0/texture = ExtResource("1_qfn4k")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("2_ggooo")
+frame_1/duration = 0.5

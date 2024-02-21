@@ -45,12 +45,12 @@ func shoot():
 		var direction 
 		if parent.animation_player.flip_h:
 			direction = -1
-			barrel.position.x = -8
+			barrel.position = Vector2(-8,3)
 		else:
 			direction = 1
-			barrel.position.x = 8
+			barrel.position = Vector2(8,3)
 			
 		
 		var new_bullet = bullet.instantiate()
-		new_bullet.start(barrel.global_position, direction)
+		new_bullet.start(barrel.global_position, direction, false)
 		get_tree().root.add_child(new_bullet) 

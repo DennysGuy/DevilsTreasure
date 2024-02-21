@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cn0o3x61shrj2"]
+[gd_scene load_steps=29 format=3 uid="uid://cn0o3x61shrj2"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_4ell5"]
 [ext_resource type="Texture2D" uid="uid://5s7tlcayl5s8" path="res://Assets/thief_4bit.png" id="2_5ucj0"]
@@ -9,6 +9,12 @@
 [ext_resource type="Script" path="res://Entities/Player/Fall.gd" id="5_x1ls0"]
 [ext_resource type="Script" path="res://Entities/Player/Climb.gd" id="8_5rcn5"]
 [ext_resource type="Script" path="res://Entities/Player/Shoot.gd" id="9_d4hiq"]
+[ext_resource type="Script" path="res://Entities/Player/AimUp.gd" id="10_h2n17"]
+[ext_resource type="Script" path="res://Entities/Player/ShootUp.gd" id="11_mv8y2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a851b"]
+atlas = ExtResource("2_5ucj0")
+region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ksvir"]
 atlas = ExtResource("2_5ucj0")
@@ -60,6 +66,14 @@ region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fjcde"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a851b")
+}],
+"loop": true,
+"name": &"AimUp",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ksvir")
@@ -134,37 +148,16 @@ height = 16.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apfk7"]
 size = Vector2(4.4375, 16)
 
-[sub_resource type="Animation" id="Animation_36s5n"]
-resource_name = "Shoot"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("animations:sprite_frames")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fg6du"]
-_data = {
-"Shoot": SubResource("Animation_36s5n")
-}
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_lys76"]
 radius = 57.0088
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 3
+collision_layer = 2
 script = ExtResource("1_4ell5")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fjcde")
-animation = &"Run"
-frame_progress = 0.45168
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
@@ -176,13 +169,14 @@ position = Vector2(8, 3)
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_qonjb")]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "move_state", "climb_state", "shoot_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "move_state", "climb_state", "shoot_state", "aim_up_state")]
 script = ExtResource("3_eo8xn")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 move_state = NodePath("../Move")
 climb_state = NodePath("../Climb")
 shoot_state = NodePath("../Shoot")
+aim_up_state = NodePath("../AimUp")
 animation_name = "Idle"
 move_speed = 0
 
@@ -230,6 +224,20 @@ timer = NodePath("../../Timer")
 barrel = NodePath("../../Barrel")
 animation_name = "Shoot"
 
+[node name="AimUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "shoot_up_state")]
+script = ExtResource("10_h2n17")
+idle_state = NodePath("../Idle")
+shoot_up_state = NodePath("../ShootUp")
+animation_name = "AimUp"
+
+[node name="ShootUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "aim_up_state", "timer", "barrel")]
+script = ExtResource("11_mv8y2")
+idle_state = NodePath("../Idle")
+aim_up_state = NodePath("../AimUp")
+timer = NodePath("../../Timer")
+barrel = NodePath("../../Barrel")
+animation_name = "ShootUp"
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
@@ -237,11 +245,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_apfk7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_fg6du")
-}
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0

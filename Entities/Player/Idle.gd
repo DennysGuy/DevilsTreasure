@@ -10,8 +10,8 @@ var move_state: State
 var climb_state: State
 @export
 var shoot_state: State
-
-var last_facing_direction := 1
+@export
+var aim_up_state: State
 
 func enter() -> void:
 	super()
@@ -30,6 +30,9 @@ func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("move_up") and parent.in_ladder_area:
 		print("in climb state")
 		return climb_state
+	
+	if Input.is_action_pressed("move_up") and !parent.in_ladder_area:
+		return aim_up_state
 	
 	if Input.is_action_just_pressed("shoot"):
 		return shoot_state
