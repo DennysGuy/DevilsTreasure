@@ -146,7 +146,7 @@ radius = 6.0
 height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apfk7"]
-size = Vector2(2, 16)
+size = Vector2(5, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lys76"]
 radius = 57.0088
@@ -243,7 +243,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, 0)
+position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_apfk7")
 
 [node name="Timer" type="Timer" parent="."]

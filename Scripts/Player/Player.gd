@@ -9,7 +9,7 @@ var state_machine = $StateMachine
 
 var in_ladder_area := false
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tee for the first time.
 func _ready() -> void:
 	state_machine.init(self)
 
