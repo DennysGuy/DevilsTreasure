@@ -385,6 +385,4 @@ position = Vector2(423, 72)
 shape = SubResource("RectangleShape2D_vnxkx")
 
 [node name="Timer" type="Timer" parent="."]
-process_callback = 0
-one_shot = true
-autostart = true
+wait_time = 0.1

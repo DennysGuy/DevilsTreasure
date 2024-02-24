@@ -1,16 +1,16 @@
-[gd_scene load_steps=29 format=3 uid="uid://cn0o3x61shrj2"]
+[gd_scene load_steps=30 format=3 uid="uid://cn0o3x61shrj2"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_4ell5"]
 [ext_resource type="Texture2D" uid="uid://5s7tlcayl5s8" path="res://Assets/thief_4bit.png" id="2_5ucj0"]
 [ext_resource type="PackedScene" uid="uid://bmuf8b48gdj3i" path="res://Scripts/StateMachine/StateMachine.tscn" id="2_qonjb"]
-[ext_resource type="Script" path="res://Entities/Player/Idle.gd" id="3_eo8xn"]
-[ext_resource type="Script" path="res://Entities/Player/Jump.gd" id="4_oyt8e"]
-[ext_resource type="Script" path="res://Entities/Player/Move.gd" id="5_0evjr"]
-[ext_resource type="Script" path="res://Entities/Player/Fall.gd" id="5_x1ls0"]
-[ext_resource type="Script" path="res://Entities/Player/Climb.gd" id="8_5rcn5"]
-[ext_resource type="Script" path="res://Entities/Player/Shoot.gd" id="9_d4hiq"]
-[ext_resource type="Script" path="res://Entities/Player/AimUp.gd" id="10_h2n17"]
-[ext_resource type="Script" path="res://Entities/Player/ShootUp.gd" id="11_mv8y2"]
+[ext_resource type="Script" path="res://Scripts/Player/Idle.gd" id="4_4h4f0"]
+[ext_resource type="Script" path="res://Scripts/Player/Jump.gd" id="5_u3b7a"]
+[ext_resource type="Script" path="res://Scripts/Player/Fall.gd" id="6_q56bo"]
+[ext_resource type="Script" path="res://Scripts/Player/Move.gd" id="7_x84us"]
+[ext_resource type="Script" path="res://Scripts/Player/Climb.gd" id="8_3ib7k"]
+[ext_resource type="Script" path="res://Scripts/Player/Shoot.gd" id="9_5ojj5"]
+[ext_resource type="Script" path="res://Scripts/Player/AimUp.gd" id="10_13g24"]
+[ext_resource type="Script" path="res://Scripts/Player/ShootUp.gd" id="11_c6r3u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a851b"]
 atlas = ExtResource("2_5ucj0")
@@ -151,6 +151,9 @@ size = Vector2(5, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_lys76"]
 radius = 57.0088
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kd28y"]
+size = Vector2(0, 0)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_4ell5")
@@ -170,7 +173,7 @@ position = Vector2(8, 3)
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "move_state", "climb_state", "shoot_state", "aim_up_state")]
-script = ExtResource("3_eo8xn")
+script = ExtResource("4_4h4f0")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 move_state = NodePath("../Move")
@@ -181,7 +184,7 @@ animation_name = "Idle"
 move_speed = 0
 
 [node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "move_state", "idle_state", "climb_state", "barrel")]
-script = ExtResource("4_oyt8e")
+script = ExtResource("5_u3b7a")
 fall_state = NodePath("../Fall")
 move_state = NodePath("../Move")
 idle_state = NodePath("../Idle")
@@ -192,7 +195,7 @@ animation_name = "Jump"
 move_speed = 180
 
 [node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "climb_state", "barrel")]
-script = ExtResource("5_x1ls0")
+script = ExtResource("6_q56bo")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
 climb_state = NodePath("../Climb")
@@ -201,7 +204,7 @@ animation_name = "Fall"
 move_speed = 100
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "climb_state", "shoot_state")]
-script = ExtResource("5_0evjr")
+script = ExtResource("7_x84us")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
@@ -211,27 +214,27 @@ animation_name = "Run"
 move_speed = 100
 
 [node name="Climb" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state")]
-script = ExtResource("8_5rcn5")
+script = ExtResource("8_3ib7k")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 move_speed = 100
 
 [node name="Shoot" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "timer", "barrel")]
-script = ExtResource("9_d4hiq")
+script = ExtResource("9_5ojj5")
 idle_state = NodePath("../Idle")
 timer = NodePath("../../Timer")
 barrel = NodePath("../../Barrel")
 animation_name = "Shoot"
 
 [node name="AimUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "shoot_up_state")]
-script = ExtResource("10_h2n17")
+script = ExtResource("10_13g24")
 idle_state = NodePath("../Idle")
 shoot_up_state = NodePath("../ShootUp")
 animation_name = "AimUp"
 
 [node name="ShootUp" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "aim_up_state", "timer", "barrel")]
-script = ExtResource("11_mv8y2")
+script = ExtResource("11_c6r3u")
 idle_state = NodePath("../Idle")
 aim_up_state = NodePath("../AimUp")
 timer = NodePath("../../Timer")
@@ -258,6 +261,15 @@ position = Vector2(8, 3)
 position = Vector2(-9, -3)
 shape = SubResource("CircleShape2D_lys76")
 
+[node name="RoomDetector" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetector"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_kd28y")
+
 [connection signal="animation_finished" from="animations" to="StateMachine/Shoot" method="_on_animations_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
