@@ -16,6 +16,7 @@ var player: CharacterBody2D = get_parent().get_node("Player")
 var timer: Timer = get_parent().get_node("Timer")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	timer.start()
 	smoothing = 1
 	
 
