@@ -35,17 +35,19 @@ func calculate_target_position(room_center: Vector2, room_size: Vector2) -> Vect
 	var return_position: Vector2 = Vector2.ZERO
 	if x_margin <= 0:
 		return_position.x = room_center.x
+		
 	else:
 		var left_limit: float = room_center.x - x_margin
 		var right_limit: float = room_center.x + x_margin
 		return_position.x = clamp(Global.player.position.x, left_limit, right_limit)
-	
+
 	if y_margin <= 0:
 		return_position.y = room_center.y
+	
 	else:
 		var top_limit = room_center.y - y_margin
 		var bot_limit = room_center.y + y_margin
-		return_position.x = clamp(Global.player.position.y, top_limit, bot_limit)
+		return_position.y = clamp(Global.player.position.y, top_limit, bot_limit)
 	
 
 	return return_position
