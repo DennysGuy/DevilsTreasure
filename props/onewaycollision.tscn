@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqsmab1buvabw"]
+
+[ext_resource type="Script" path="res://props/onewaycollision.gd" id="1_hmkcj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2luy6"]
+size = Vector2(20, 10)
+
+[node name="onewaycollision" type="StaticBody2D"]
+script = ExtResource("1_hmkcj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_2luy6")
+debug_color = Color(1, 1, 1, 0.419608)

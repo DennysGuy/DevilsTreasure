@@ -275,7 +275,7 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_kd28y")
 
 [node name="LadderDetector" type="RayCast2D" parent="."]
-scale = Vector2(8, 0.5)
+scale = Vector2(4, 0.2)
 collision_mask = 4
 
 [connection signal="animation_finished" from="animations" to="StateMachine/Shoot" method="_on_animations_animation_finished"]

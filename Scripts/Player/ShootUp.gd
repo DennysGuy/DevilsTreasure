@@ -33,10 +33,10 @@ func shoot():
 	var direction 
 	if parent.animation_player.flip_h:
 		direction = -1
-		barrel.position = Vector2(-4,-3)
+		barrel.position = Vector2(-4,-8)
 	else:
 		direction = 1
-		barrel.position = Vector2(4,-3)
+		barrel.position = Vector2(4,-8)
 		
 	if bullet_count > 0:
 		var new_bullet = bullet.instantiate()

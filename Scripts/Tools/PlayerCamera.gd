@@ -4,7 +4,7 @@ var follow_smoothing: float = 0.2
 var smoothing: float
 var current_room_center: Vector2
 var current_room_size: Vector2
-
+var hud_height = 16*2
 @onready
 var view_size: Vector2 = get_viewport_rect().size
 
@@ -30,7 +30,7 @@ func _physics_process(delta):
 
 func calculate_target_position(room_center: Vector2, room_size: Vector2) -> Vector2:
 	var x_margin: float = (room_size.x - zoom_view_size.x)/2
-	var y_margin: float = (room_size.y - zoom_view_size.y)/2
+	var y_margin: float = (room_size.y - zoom_view_size.y)/2 
 	
 	var return_position: Vector2 = Vector2.ZERO
 	if x_margin <= 0:
@@ -45,8 +45,8 @@ func calculate_target_position(room_center: Vector2, room_size: Vector2) -> Vect
 		return_position.y = room_center.y
 	
 	else:
-		var top_limit = room_center.y - y_margin
-		var bot_limit = room_center.y + y_margin
+		var top_limit = room_center.y - (y_margin)
+		var bot_limit = room_center.y + (y_margin)
 		return_position.y = clamp(Global.player.position.y, top_limit, bot_limit)
 	
 

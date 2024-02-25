@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceogijio0qhet"]
+
+[ext_resource type="Texture2D" uid="uid://c3eg0pd6g7n1f" path="res://Assets/UI.png" id="1_7jnps"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 16.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(80, 8)
+texture = ExtResource("1_7jnps")
