@@ -1,6 +1,6 @@
 extends Camera2D
 
-var follow_smoothing: float = 0.1
+var follow_smoothing: float = 0.2
 var smoothing: float
 var current_room_center: Vector2
 var current_room_size: Vector2
