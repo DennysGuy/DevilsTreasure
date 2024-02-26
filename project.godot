@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="LegendOfZeldaLikeShooter"
+config/name="Devil's Treasure"
 run/main_scene="res://Maps/TestMap.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
@@ -23,7 +23,6 @@ Global="*res://Scripts/global.gd"
 
 window/size/viewport_width=160
 window/size/viewport_height=144
-window/size/mode=2
 window/size/initial_position_type=2
 window/stretch/mode="canvas_items"
 
