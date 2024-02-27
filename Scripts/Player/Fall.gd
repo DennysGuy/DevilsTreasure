@@ -6,6 +6,8 @@ var idle_state: State
 var move_state: State
 @export
 var climb_state: State
+@export
+var jump_state: State
 
 @onready
 var bullet = preload("res://props/Projectiles/player_bullet.tscn")
@@ -14,9 +16,17 @@ var bullet = preload("res://props/Projectiles/player_bullet.tscn")
 var barrel : Marker2D
 @export
 var ladder_detector: RayCast2D
+@onready
+var timer: Timer = $"../../Timer"
+
+func enter() -> void:
+	timer.start()
+
+func exit() -> void:
+	parent.has_jumped = false
+
+
 func process_input(_event: InputEvent) -> State:
-		
-	
 	return null
 
 func process_physics(_delta: float) -> State:
@@ -34,6 +44,11 @@ func process_physics(_delta: float) -> State:
 	if Input.is_action_just_pressed("shoot"):
 			self.shoot()
 	
+	if !timer.is_stopped():
+		if Input.is_action_just_pressed("jump") and parent.has_jumped == false:
+			parent.jump_force = 350
+			
+			return jump_state
 	
 	if parent.is_on_floor():
 		if movement != 0:

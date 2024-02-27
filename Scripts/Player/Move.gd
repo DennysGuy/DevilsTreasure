@@ -19,6 +19,7 @@ var prevInput
 
 func enter() -> void:
 	super()
+	parent.jump_force = 300
 	parent.velocity.x = 0
 
 func exit() -> void:

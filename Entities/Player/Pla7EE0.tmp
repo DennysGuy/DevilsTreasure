@@ -192,6 +192,7 @@ move_state = NodePath("../Move")
 idle_state = NodePath("../Idle")
 climb_state = NodePath("../Climb")
 barrel = NodePath("../../Barrel")
+jump_force = 250.0
 animation_name = "Jump"
 move_speed = 180
 
@@ -255,7 +256,6 @@ shape = SubResource("RectangleShape2D_apfk7")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.2
 one_shot = true
 
 [node name="BulletOutofRangeDetector" type="Area2D" parent="."]

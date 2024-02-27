@@ -11,7 +11,7 @@ var player_score: int = 0
 var keys: int = 0
 var bombs: int = 0
 var credits: int = 0
-var items = {}
+var items: Array
 
 func change_room(room_position: Vector2, room_size: Vector2):
 	camera.current_room_center = room_position

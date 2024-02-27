@@ -16,12 +16,13 @@ var bullet = preload("res://props/Projectiles/player_bullet.tscn")
 @export
 var barrel : Marker2D
 
-@export
-var jump_force: float = 600.0
-
 func enter() -> void:
 	super()
-	parent.velocity.y -= jump_force
+	parent.has_jumped = true
+	parent.velocity.y -= parent.jump_force
+
+
+	
 
 func process_input(_event: InputEvent) -> State:
 		

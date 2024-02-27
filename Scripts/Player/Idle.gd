@@ -18,6 +18,7 @@ var ladder_detector: RayCast2D
 
 func enter() -> void:
 	super()
+	parent.jump_force = 300
 	move_speed = 600
 
 func process_input(_event: InputEvent) -> State:
@@ -50,8 +51,6 @@ func process_physics(_delta: float) -> State:
 
 	if movement != 0 and parent.is_on_floor():
 		return move_state
-	
-	
 	
 	#parent.velocity.x = 0
 	parent.move_and_slide()
