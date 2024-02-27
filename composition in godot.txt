@@ -1,0 +1,30 @@
+composition in godot:
+
+- breaking down the components of an entity to allow for more granular control.
+- The goal is to introduce loose coupling so that an entity is not forced to use
+hardcoded components causing bloating and implementing of unnecessary code for 
+an entity to work. 
+- instead of relying on inheritcance, we can add the components necessary to that specific entity
+
+- what is the minimum set of reusable functionality that you can put in node form that is gauranteed  to be uself across a number of different scenes?
+
+ex:
+
+- enemy entity
+	components:
+		- health 
+		- hurtbox component
+		- hitbox component
+		- pathing finding component
+		- shadow component
+
+- guy writes a state machine for every entity since the functionality seems to specific to each entity
+
+- Think of a component as a godot node. In many cases, a godot node will rely on another godot node in order to function (i.e. area2D requires a collisionshape 2D to define it's shape and boundaries)
+
+
+- composition over inheritance seems to be good if you have a lot of different components to your game.
+
+- does my game need composition?
+
+an enemy will almost always have health, can die, can take damage, can give damage, detect player
