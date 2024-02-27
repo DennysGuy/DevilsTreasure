@@ -26,7 +26,6 @@ func enter() -> void:
 func process_input(_event: InputEvent) -> State:
 		
 	if Input.is_action_just_pressed("move_up") and parent.in_ladder_area:
-		print("in climb state")
 		return climb_state
 	
 	return null

@@ -40,7 +40,6 @@ func process_input(_event: InputEvent) -> State:
 	return null
 
 func process_physics(_delta: float) -> State:
-	print(ladder_detector.is_colliding())
 	parent.velocity.y += gravity * _delta
 	
 	var movement = Input.get_axis("move_left","move_right")
