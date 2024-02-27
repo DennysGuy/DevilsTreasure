@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnieatnhvk0kd"
-path="res://.godot/imported/gun_arm.png-5c13294f9e3cffbc756204fc12d12cd9.ctex"
+uid="uid://cy4ciyxspvhdk"
+path="res://.godot/imported/tilesheet-1.png-ee0d41ef9f3c14b2904da84013f40ce6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/gun_arm.png"
-dest_files=["res://.godot/imported/gun_arm.png-5c13294f9e3cffbc756204fc12d12cd9.ctex"]
+source_file="res://src/Props/Projectiles/tilesheet-1.png"
+dest_files=["res://.godot/imported/tilesheet-1.png-ee0d41ef9f3c14b2904da84013f40ce6.ctex"]
 
 [params]
 

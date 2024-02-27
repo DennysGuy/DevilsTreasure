@@ -6,7 +6,7 @@ var idle_state: State
 var shoot_up_state: State
 
 @onready
-var bullet = preload("res://props/Projectiles/player_bullet.tscn")
+var bullet = preload("res://src/Props/Projectiles/player_bullet.tscn")
 
 func enter() -> void:
 	super()

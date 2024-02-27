@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Devil's Treasure"
-run/main_scene="res://Maps/TestMap.tscn"
+run/main_scene="res://src/Maps/TestMap.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Scripts/global.gd"
+Global="*res://src/Scripts/global.gd"
 
 [display]
 

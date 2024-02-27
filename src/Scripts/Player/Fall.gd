@@ -10,7 +10,7 @@ var climb_state: State
 var jump_state: State
 
 @onready
-var bullet = preload("res://props/Projectiles/player_bullet.tscn")
+var bullet = preload("res://src/Props/Projectiles/player_bullet.tscn")
 
 @export
 var barrel : Marker2D

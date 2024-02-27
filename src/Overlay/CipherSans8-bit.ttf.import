@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b18ls3fr4m38"
-path="res://.godot/imported/CipherSans8-bit.ttf-5502316eee613cbf237b38a2371fe967.fontdata"
+path="res://.godot/imported/CipherSans8-bit.ttf-78e22ca74a98f8d1cec027d4f351e619.fontdata"
 
 [deps]
 
-source_file="res://Overlay/CipherSans8-bit.ttf"
-dest_files=["res://.godot/imported/CipherSans8-bit.ttf-5502316eee613cbf237b38a2371fe967.fontdata"]
+source_file="res://src/Overlay/CipherSans8-bit.ttf"
+dest_files=["res://.godot/imported/CipherSans8-bit.ttf-78e22ca74a98f8d1cec027d4f351e619.fontdata"]
 
 [params]
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://dfw5qw2mmc5wi"]
 
 [ext_resource type="Texture2D" uid="uid://dw0844hnkr4rm" path="res://Assets/tilesheet-1.png" id="1_0q2le"]
-[ext_resource type="PackedScene" uid="uid://cn0o3x61shrj2" path="res://Entities/Player/Player.tscn" id="1_n7m7m"]
+[ext_resource type="PackedScene" uid="uid://cn0o3x61shrj2" path="res://src/Entities/Player/Player.tscn" id="1_n7m7m"]
 [ext_resource type="Texture2D" uid="uid://cdydm66xk6ix5" path="res://Assets/torch_pole.tres" id="2_apgch"]
-[ext_resource type="Script" path="res://Scripts/Tools/PlayerCamera.gd" id="4_fna4e"]
-[ext_resource type="PackedScene" uid="uid://ceogijio0qhet" path="res://Overlay/hud.tscn" id="5_1rytx"]
-[ext_resource type="PackedScene" uid="uid://cqsmab1buvabw" path="res://props/onewaycollision.tscn" id="6_24fya"]
+[ext_resource type="Script" path="res://src/Scripts/Tools/PlayerCamera.gd" id="4_fna4e"]
+[ext_resource type="PackedScene" uid="uid://ceogijio0qhet" path="res://src/Overlay/hud.tscn" id="5_1rytx"]
+[ext_resource type="PackedScene" uid="uid://cqsmab1buvabw" path="res://src/props/onewaycollision.tscn" id="6_24fya"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_drc4t"]
 resource_name = "tile_sheet"
