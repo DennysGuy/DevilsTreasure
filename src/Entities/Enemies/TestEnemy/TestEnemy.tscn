@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ktmiqh2ilal"]
+
+[ext_resource type="Script" path="res://src/Entities/Enemies/TestEnemy/TestEnemy.gd" id="1_6up5d"]
+[ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="2_sbe26"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kicup"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5cw2"]
+size = Vector2(16, 16)
+
+[node name="TestEnemy" type="CharacterBody2D"]
+script = ExtResource("1_6up5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(0.125, 0.121094)
+texture = ExtResource("2_sbe26")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_kicup")
+
+[node name="HitDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetector"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_w5cw2")
+
+[node name="DamageReceiver" type="Node" parent="."]
+
+[connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]
