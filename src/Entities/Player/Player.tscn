@@ -70,7 +70,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a851b")
 }],
-"loop": true,
+"loop": false,
 "name": &"AimUp",
 "speed": 5.0
 }, {

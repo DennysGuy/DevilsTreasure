@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmgrg3u8vo6n1"]
+[gd_scene load_steps=4 format=3 uid="uid://cmgrg3u8vo6n1"]
 
 [ext_resource type="Script" path="res://src/Scripts/Props/bullet.gd" id="1_7paoy"]
 [ext_resource type="Texture2D" uid="uid://b060nsllslebo" path="res://Assets/bullet.png" id="2_kjpfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhspm"]
+size = Vector2(6, 2)
 
 [node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("bullet")]
 script = ExtResource("1_7paoy")
@@ -11,5 +14,12 @@ bullet = NodePath("bullet")
 texture = ExtResource("2_kjpfh")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, 0)
+scale = Vector2(0.15, 0.1)
+
+[node name="BulletArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea"]
+shape = SubResource("RectangleShape2D_lhspm")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
