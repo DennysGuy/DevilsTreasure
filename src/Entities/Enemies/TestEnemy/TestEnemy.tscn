@@ -7,9 +7,10 @@
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5cw2"]
-size = Vector2(16, 16)
+size = Vector2(14, 14)
 
 [node name="TestEnemy" type="CharacterBody2D"]
+position = Vector2(290, 110)
 script = ExtResource("1_6up5d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,12 +22,10 @@ texture = ExtResource("2_sbe26")
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_kicup")
 
-[node name="HitDetector" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_w5cw2")
 
 [node name="DamageReceiver" type="Node" parent="."]
-
-[connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]

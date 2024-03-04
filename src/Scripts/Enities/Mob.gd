@@ -17,8 +17,6 @@ func apply_heal(_amount: int) -> void:
 
 # will need to rewrite so that enemy can be knocked back in any direction (up down left right)
 func apply_knock_back(_position: Vector2, _new_position: Vector2, _force: int) -> void:
-	var speed = 0
-	speed += _force * get_process_delta_time()
 	position = lerp(_position, _new_position, _force)
 
 func get_health() -> int:
