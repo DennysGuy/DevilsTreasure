@@ -16,7 +16,8 @@ func start(_position, _direction, _aim_up: bool):
 		velocity = Vector2(direction * speed, 0)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
+	#print(velocity)
 	move_and_collide(velocity * delta)
 
 
