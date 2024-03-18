@@ -23,13 +23,13 @@ func _physics_process(delta):
 	#print(landing_position)
 	move_and_slide()
 	
-	if HurtBox.has_overlapping_areas():
-		var area: Area2D = HurtBox.get_overlapping_areas().pop_back()
-		var bullet = area.get_parent()
-		if area.name == "BulletArea":
-			self.apply_damage(bullet.damage_range)
-			print(health)
-			area.get_parent().queue_free()
+	#if HurtBox.has_overlapping_areas():
+		#var area: Area2D = HurtBox.get_overlapping_areas().pop_back()
+		#var bullet = area.get_parent()
+		#if area.name == "BulletArea":
+			#self.apply_damage(bullet.damage_range)
+			#print(health)
+			#area.get_parent().queue_free()
 			
 			#return hurt_state
 	#print(HurtBox.get_parent().get_child_count())
