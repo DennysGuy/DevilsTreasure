@@ -1,10 +1,5 @@
-class_name Entity
-extends CharacterBody2D
+extends Entity
 
-@onready
-var animation_player = $animations
-@onready
-var state_machine = $StateMachine
 @export
 var camera : Camera2D
 @export

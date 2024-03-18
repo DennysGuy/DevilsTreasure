@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfw5qw2mmc5wi"]
+[gd_scene load_steps=16 format=3 uid="uid://dfw5qw2mmc5wi"]
 
 [ext_resource type="Texture2D" uid="uid://dw0844hnkr4rm" path="res://Assets/tilesheet-1.png" id="1_0q2le"]
 [ext_resource type="PackedScene" uid="uid://cn0o3x61shrj2" path="res://src/Entities/Player/Player.tscn" id="1_n7m7m"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://src/Scripts/Tools/PlayerCamera.gd" id="4_fna4e"]
 [ext_resource type="PackedScene" uid="uid://ceogijio0qhet" path="res://src/Overlay/hud.tscn" id="5_1rytx"]
 [ext_resource type="PackedScene" uid="uid://cqsmab1buvabw" path="res://src/Props/onewaycollision.tscn" id="6_24fya"]
-[ext_resource type="PackedScene" uid="uid://2ktmiqh2ilal" path="res://src/Entities/Enemies/TestEnemy/TestEnemy.tscn" id="7_adiyy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_drc4t"]
 resource_name = "tile_sheet"
@@ -449,6 +448,3 @@ position = Vector2(467, 128)
 
 [node name="onewaycollision5" parent="." instance=ExtResource("6_24fya")]
 position = Vector2(387, 233)
-
-[node name="TestEnemy" parent="." instance=ExtResource("7_adiyy")]
-position = Vector2(71, 107)

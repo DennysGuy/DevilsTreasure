@@ -8,7 +8,6 @@ var move_speed: float
 func set_health(_amount: int) -> void:
 	health = _amount
 
-
 func apply_damage(_damage_range: Array) -> void:
 	health -= randi_range(_damage_range[0], _damage_range[1])
 

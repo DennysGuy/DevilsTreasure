@@ -5,7 +5,6 @@ var attack_stats : Attack
 
 @export
 var parent : Entity
-
 @export
 var min_damage : int = 1
 @export

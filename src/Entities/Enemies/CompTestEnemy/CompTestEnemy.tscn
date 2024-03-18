@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6oi7wyhp2lw0"]
+
+[ext_resource type="Script" path="res://src/Entity/Entity.gd" id="1_s4hxe"]
+[ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="2_ckde8"]
+[ext_resource type="PackedScene" uid="uid://bmuf8b48gdj3i" path="res://src/Scripts/StateMachine/StateMachine.tscn" id="3_1tlbe"]
+[ext_resource type="PackedScene" uid="uid://ccbgykvtlbjjs" path="res://src/Components/HealthComponent.tscn" id="4_o87bo"]
+[ext_resource type="PackedScene" uid="uid://ddtni51uqcotg" path="res://src/Components/HitBoxComponent.tscn" id="5_q7bkq"]
+[ext_resource type="PackedScene" uid="uid://bxiofk8sbepi1" path="res://src/Components/HurtBoxComponent.tscn" id="6_fnsh6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqvfn"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47d42"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwspw"]
+size = Vector2(12, 12)
+
+[node name="CompTestEnemy" type="CharacterBody2D"]
+script = ExtResource("1_s4hxe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../placeholder")
+
+[node name="placeholder" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(0.09375, 0.09375)
+texture = ExtResource("2_ckde8")
+
+[node name="StateMachine" parent="." instance=ExtResource("3_1tlbe")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_o87bo")]
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("5_q7bkq")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_oqvfn")
+
+[node name="HurtBoxComponent" parent="." instance=ExtResource("6_fnsh6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_47d42")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_mwspw")
