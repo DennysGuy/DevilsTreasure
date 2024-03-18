@@ -14,6 +14,7 @@ func _ready():
 func _process(delta):
 	pass
 
+#signal?
 func bullet_detected(hitbox : HitBox, state : State) -> bool:
 	if self.has_overlapping_areas():
 		hitbox.parent.queue_free()
