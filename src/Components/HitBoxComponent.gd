@@ -15,6 +15,7 @@ var knock_back_amount : float = 2.0
 var stun_time : int = 0
 
 func _ready():
+	attack_stats = Attack.new()
 	attack_stats.set_min_damage(min_damage)
 	attack_stats.set_max_damage(max_damage)
 	attack_stats.set_position(parent.global_position)

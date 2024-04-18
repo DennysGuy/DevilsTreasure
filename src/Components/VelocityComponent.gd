@@ -5,11 +5,13 @@ class_name VelocityComponent
 var move_speed : float
 @export
 var jump_strength : float
+@export
+var entity : Entity
 
-func apply_horizontal_movement(entity : Entity, dir : int):
+func apply_horizontal_movement(dir : int):
 	self.entity.velocity.x = dir * move_speed
 
-func apply_vertical_movement(entity : Entity):
+func apply_vertical_movement():
 	self.entity.velocity.y = -jump_strength
 
 func set_move_speed(move_speed : float):

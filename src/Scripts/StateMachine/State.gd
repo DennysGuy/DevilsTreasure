@@ -7,6 +7,7 @@ var animation_name: String
 var move_speed : int = 600
 
 
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var parent: Entity
