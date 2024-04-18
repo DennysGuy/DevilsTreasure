@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6oi7wyhp2lw0"]
+[gd_scene load_steps=14 format=3 uid="uid://b6oi7wyhp2lw0"]
 
 [ext_resource type="Script" path="res://src/Entity/Entity.gd" id="1_s4hxe"]
 [ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="2_ckde8"]
@@ -9,6 +9,25 @@
 [ext_resource type="Script" path="res://src/Entities/Enemies/CompTestEnemy/Patrol.gd" id="5_m6lfd"]
 [ext_resource type="PackedScene" uid="uid://ddtni51uqcotg" path="res://src/Components/HitBoxComponent.tscn" id="5_q7bkq"]
 [ext_resource type="PackedScene" uid="uid://bxiofk8sbepi1" path="res://src/Components/HurtBoxComponent.tscn" id="6_fnsh6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t5srn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ckde8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ckde8")
+}],
+"loop": true,
+"name": &"Patrol",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqvfn"]
 size = Vector2(12, 12)
@@ -22,28 +41,29 @@ size = Vector2(12, 12)
 [node name="CompTestEnemy" type="CharacterBody2D"]
 script = ExtResource("1_s4hxe")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../placeholder")
-
-[node name="placeholder" type="Sprite2D" parent="."]
-position = Vector2(0, -6)
-scale = Vector2(0.09375, 0.09375)
-texture = ExtResource("2_ckde8")
+[node name="animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.86102e-06, -6)
+scale = Vector2(0.09, 0.09)
+sprite_frames = SubResource("SpriteFrames_t5srn")
+animation = &"Idle"
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_1tlbe")]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("patrol")]
 script = ExtResource("4_j2w43")
+patrol = NodePath("../Patrol")
+animation_name = "Idle"
 
 [node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle")]
 script = ExtResource("5_m6lfd")
 idle = NodePath("../Idle")
+animation_name = "Patrol"
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_o87bo")]
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("5_lrefu")]
-move_speed = 300.0
+move_speed = 20.0
 jump_strength = 500.0
 entity = NodePath("..")
 
@@ -68,3 +88,4 @@ shape = SubResource("RectangleShape2D_mwspw")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
