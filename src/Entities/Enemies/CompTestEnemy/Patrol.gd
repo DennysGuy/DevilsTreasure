@@ -28,8 +28,6 @@ func enter() -> void:
 		dir = 1
 	else:
 		dir = directions.pick_random()
-	print(no_zone_detector.target_position.x/18)
-	print(int(parent.animation_player.flip_h))
 	timer.start()
 	print("I'm in patrol state")
 
@@ -38,7 +36,7 @@ func process_physics(_delta: float) -> State:
 	
 	velocity_component.apply_horizontal_movement(dir)
 	
-	if no_zone_detector.is_colliding() and int(direction_compartor.target_position.x/18) == int(no_zone_detector.target_position.x/18) :
+	if no_zone_detector.is_colliding() and int(direction_compartor.target_position.x) == int(no_zone_detector.target_position.x) :
 		direction_compartor.target_position.x = (dir * 18) * -1
 		return idle
 	
