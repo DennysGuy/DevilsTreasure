@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6oi7wyhp2lw0"]
+[gd_scene load_steps=20 format=3 uid="uid://b6oi7wyhp2lw0"]
 
 [ext_resource type="Script" path="res://src/Entity/Entity.gd" id="1_s4hxe"]
-[ext_resource type="Texture2D" uid="uid://b2v3acjf4h31r" path="res://icon.svg" id="2_ckde8"]
+[ext_resource type="Texture2D" uid="uid://dd3nrq3wnsvd4" path="res://Assets/mutant_spider.png" id="2_18kmq"]
 [ext_resource type="PackedScene" uid="uid://bmuf8b48gdj3i" path="res://src/Scripts/StateMachine/StateMachine.tscn" id="3_1tlbe"]
 [ext_resource type="Script" path="res://src/Entities/Enemies/CompTestEnemy/Idle.gd" id="4_j2w43"]
 [ext_resource type="PackedScene" uid="uid://ccbgykvtlbjjs" path="res://src/Components/HealthComponent.tscn" id="4_o87bo"]
@@ -10,42 +10,81 @@
 [ext_resource type="PackedScene" uid="uid://ddtni51uqcotg" path="res://src/Components/HitBoxComponent.tscn" id="5_q7bkq"]
 [ext_resource type="PackedScene" uid="uid://bxiofk8sbepi1" path="res://src/Components/HurtBoxComponent.tscn" id="6_fnsh6"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_t5srn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wv0d"]
+atlas = ExtResource("2_18kmq")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbvsk"]
+atlas = ExtResource("2_18kmq")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5igb"]
+atlas = ExtResource("2_18kmq")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nifcc"]
+atlas = ExtResource("2_18kmq")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73xso"]
+atlas = ExtResource("2_18kmq")
+region = Rect2(128, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5lcs"]
+atlas = ExtResource("2_18kmq")
+region = Rect2(160, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a7sqi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ckde8")
+"texture": SubResource("AtlasTexture_7wv0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbvsk")
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ckde8")
+"texture": SubResource("AtlasTexture_n5igb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nifcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73xso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5lcs")
 }],
 "loop": true,
 "name": &"Patrol",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqvfn"]
-size = Vector2(12, 12)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwoja"]
+radius = 7.0
+height = 18.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_47d42"]
-size = Vector2(12, 12)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n4ae7"]
+radius = 7.0
+height = 18.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwspw"]
-size = Vector2(12, 12)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dfvvh"]
+radius = 7.0
+height = 18.0
 
 [node name="CompTestEnemy" type="CharacterBody2D"]
 script = ExtResource("1_s4hxe")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
-position = Vector2(2.86102e-06, -6)
-scale = Vector2(0.09, 0.09)
-sprite_frames = SubResource("SpriteFrames_t5srn")
-animation = &"Idle"
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_a7sqi")
+animation = &"Patrol"
+frame_progress = 0.313308
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_1tlbe")]
 initial_state = NodePath("Idle")
@@ -71,21 +110,38 @@ entity = NodePath("..")
 parent = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_oqvfn")
+position = Vector2(1, -7)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_nwoja")
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("parent", "health_component") instance=ExtResource("6_fnsh6")]
 parent = NodePath("..")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_47d42")
+position = Vector2(1, -7)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_n4ae7")
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_mwspw")
+position = Vector2(1, -7)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_dfvvh")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="NoZoneDetector" type="RayCast2D" parent="."]
+position = Vector2(1, -7)
+target_position = Vector2(-18, 0)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="DirectionComparator" type="RayCast2D" parent="."]
+position = Vector2(1, -7)
+target_position = Vector2(-18, 0)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
