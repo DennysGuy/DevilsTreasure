@@ -16,9 +16,12 @@ var aim_up_state: State
 @export
 var ladder_detector: RayCast2D
 
+
+
 func enter() -> void:
 	super()
 	parent.jump_force = 300
+	
 	move_speed = 600
 
 func process_input(_event: InputEvent) -> State:
