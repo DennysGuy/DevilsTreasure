@@ -72,6 +72,7 @@ shoot={
 2d_physics/layer_2="Floors"
 2d_physics/layer_3="Ladders"
 2d_physics/layer_4="NoZones"
+2d_physics/layer_5="Enemies"
 2d_physics/layer_8="Rooms"
 
 [physics]

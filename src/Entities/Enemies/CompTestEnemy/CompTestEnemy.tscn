@@ -78,6 +78,8 @@ radius = 7.0
 height = 18.0
 
 [node name="CompTestEnemy" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 18
 script = ExtResource("1_s4hxe")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
